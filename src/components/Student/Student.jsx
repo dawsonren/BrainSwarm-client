@@ -7,6 +7,7 @@ import { NameView } from './NameView';
 export const Student = () => {
   const [seeNameView, setSeeNameView] = useState(true)
   const [username, setUsername] = useState('')
+  const [roomID, setRoomID] = useState('')
 
   // lifecycle
   useEffect(() => {
@@ -17,10 +18,14 @@ export const Student = () => {
     };
   }, []);
 
+  function enterRoom() {
+    setSeeNameView(false)
+  }
+
   return (
     <div className="App">
       {seeNameView ? 
-        <NameView username={username} setUsername={setUsername} finished={() => setSeeNameView(false)} /> :
+        <NameView username={username} setUsername={setUsername} roomID={roomID} setRoomID={setRoomID} finished={enterRoom} /> :
         <RollScreen username={username} />
       }
     </div>

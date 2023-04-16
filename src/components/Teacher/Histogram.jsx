@@ -13,7 +13,7 @@ export const HistogramChart = ({data}) => {
       <Bar data={{
           labels: labels,
           datasets: [{
-            label: 'Roll Frequency',
+            label: 'Roll Counts',
             data: data,
             backgroundColor: backgroundColor,
             borderColor: borderColor,

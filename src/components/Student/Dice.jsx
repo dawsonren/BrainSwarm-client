@@ -56,7 +56,7 @@ export const Dice = ({rollValues, rollCallback}) => {
   }
 
   return (
-    <div className="container" id="dice">
+    <div className="d-flex flex-column align-items-center justify-content-center" id="dice">
       {/* Dice roll animation from: https://github.com/hosseinnabi-ir/Roll-Dice-Project-using-CSS-and-JavaScript/blob/AngularProject/css/style.css */}
       <div className="dice" ref={diceRef}>
         <div className="face front"></div>
