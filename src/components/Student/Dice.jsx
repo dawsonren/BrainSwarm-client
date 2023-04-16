@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { socket } from '../../socket';
-import './dice.css'
+import './dice.css';
+import { v4 as uuidv4 } from 'uuid';
 
-export const Dice = ({rollValues, rollCallback}) => {
+export const Dice = ({username, rollValues, rollCallback}) => {
   const [rotX, setRotX] = useState(0);
   const [rotY, setRotY] = useState(0);
   const diceRef = useRef(null);
@@ -52,7 +53,7 @@ export const Dice = ({rollValues, rollCallback}) => {
     rollCallback(roll)
     
     // emit event
-    socket.emit('sendIncrement', roll)
+    socket.emit('sendIncrement', username, roll, uuidv4() )
   }
 
   return (

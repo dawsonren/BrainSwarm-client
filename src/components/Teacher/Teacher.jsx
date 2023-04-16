@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { socket } from '../../socket';
 import HistogramChart from './Histogram';
 import { WaitingRoom } from './WaitingRoom';
+import MessageTimeline from './MessageTimeline';
 
 export const Teacher = () => {
   const [increment, setIncrement] = useState(0);
   const [counters, setCounters] = useState([0, 0, 0, 0, 0, 0]);
   const [rollCount, setRollCount] = useState(0);
+  const [currentUser, setCurrentUser] = useState(0);
+  const [message, setMessage] = useState(0);
   const [finished, setFinished] = useState(false)
   const [roomID, setRoomID] = useState(null)
 
@@ -35,8 +38,12 @@ export const Teacher = () => {
     };
   }, [counters]);
 
-  function receiveIncrement(num) {
+  
+
+  function receiveIncrement(username,num, uuid) {
     console.log(`received ${num}`);
+    console.log(username)
+    setCurrentUser(username);
     setIncrement(increment + num);
     setCounters((prevCounters) => {
       const newCounters = [...prevCounters];
@@ -44,6 +51,7 @@ export const Teacher = () => {
       return newCounters;
     });
     setRollCount((prevRollCount) => prevRollCount + 1);
+    setMessage(`${username} rolled a ${num}! @#$%${uuid}`)
   }
 
   return (
@@ -60,6 +68,7 @@ export const Teacher = () => {
             </div>
             <h5>Histogram</h5>
             <HistogramChart data={counters} />
+            <MessageTimeline message={message} />
           </div>
         ) :
         <WaitingRoom roomID={roomID} finished={() => setFinished(true)} />
