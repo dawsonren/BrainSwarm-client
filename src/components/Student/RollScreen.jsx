@@ -28,7 +28,7 @@ export const RollScreen = ({username}) => {
   return (
     <div className="d-flex flex-column align-items-center justify-content-center">
       <h1 className="mb-5">{username}'s Rolls</h1>
-      <Dice rollValues={rollValues} rollCallback={rollCallback} />
+      <Dice username={username} rollValues={rollValues} rollCallback={rollCallback} />
       <p>Roll count: {rollCount}</p>
       <p>Mean of rolls: {isNaN(sumCount / rollCount) ? 0 : Math.round(sumCount * 100 / rollCount) / 100}</p>
       <p>Last 5 Rolls: {getLastFiveString()}</p>
